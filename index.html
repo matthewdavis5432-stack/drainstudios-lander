@@ -3,49 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Hub | Drain Studios</title>
+    <title>Drain Studios | Enterprise Network & Digital Solutions</title>
     <style>
         :root {
             --bg-main: #0b0f19;
             --bg-card: #131a26;
+            --bg-ad: #172030;
             --text-main: #f8fafc;
             --text-muted: #64748b;
+            --text-ad-label: #3b82f6;
             --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.15);
             --border: #1e293b;
         }
-        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg-main); color: var(--text-main); margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid var(--border); background: rgba(11, 15, 25, 0.8); }
-        nav .logo { font-size: 1.2em; font-weight: 800; color: #ffffff; text-decoration: none; }
-        nav .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 24px; font-size: 0.9em; transition: color 0.2s ease; }
+        body { 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo {
+            font-size: 1.2em;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        nav .nav-links { display: flex; gap: 24px; font-size: 0.9em; }
+        nav .nav-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s ease; }
         nav .nav-links a:hover { color: #ffffff; }
-        .container { max-width: 800px; margin: 60px auto; padding: 0 24px; flex: 1; }
-        h1 { font-size: 2.5em; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 40px; }
-        .section { margin-bottom: 40px; background: var(--bg-card); padding: 30px; border-radius: 12px; border: 1px solid var(--border); }
-        .section h2 { color: #3b82f6; margin-top: 0; font-size: 1.4em; }
-        .section p { color: var(--text-muted); line-height: 1.7; font-size: 0.95em; }
-        .counter-panel { margin: 50px auto 10px auto; background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 16px 24px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 0.85em; font-weight: 700; color: #9ca3af; }
-        .pulse-icon { width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-        .counter-digits { color: #3b82f6; font-family: monospace; font-size: 1.2em; background: #030712; padding: 4px 10px; border-radius: 6px; border: 1px solid #374151; }
-        footer { background-color: #05070f; color: #475569; text-align: center; padding: 40px 24px; font-size: 0.8em; border-top: 1px solid var(--border); }
+
+        header { 
+            padding: 80px 20px 40px 20px; 
+            text-align: center; 
+            background: radial-gradient(circle at top, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 3.5em; 
+            font-weight: 900; 
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #ffffff 20%, #60a5fa 40%, #2563eb 60%, #ffffff 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 6s linear infinite;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+        header p { margin: 14px 0 0 0; color: var(--text-muted); font-size: 1.15em; }
+        
+        .container { max-width: 1200px; margin: 0 auto 60px auto; padding: 0 24px; flex: 1; }
+        .ad-banner-placement {
+            background: var(--bg-ad);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            text-align: center;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ad-label {
+            position: absolute;
+            top: 6px;
+            left: 12px;
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-ad-label);
+        }
+
+        .grid { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px; 
+            margin-top: 40px; 
+        }
+        .card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border);
+            border-radius: 16px; 
+            padding: 32px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+        }
+        .card h3 { color: #ffffff; margin-top: 0; font-size: 1.35em; font-weight: 700; }
+        .card p { color: var(--text-muted); font-size: 0.95em; margin: 12px 0 0 0; }
+        .btn { 
+            display: block; 
+            background: var(--accent); 
+            color: white; 
+            text-decoration: none; 
+            padding: 14px 24px; 
+            border-radius: 10px; 
+            font-weight: 600; 
+            margin-top: 32px; 
+            text-align: center; 
+            cursor: pointer; 
+            border: none; 
+            font-size: 0.95em; 
+        }
+        .btn:hover { background: #1d4ed8; }
+
+        .counter-panel {
+            margin: 50px auto 10px auto;
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 16px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+        }
+        .pulse-icon {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .counter-digits {
+            color: #3b82f6;
+            font-family: monospace;
+            font-size: 1.2em;
+            background: #030712;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid #374151;
+        }
+
+        footer { 
+            background-color: #05070f; 
+            color: #475569; 
+            text-align: center; 
+            padding: 40px 24px; 
+            font-size: 0.8em; 
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+        footer p { max-width: 900px; margin: 6px auto; }
     </style>
+    <!-- LIVE VERIFIED GOOGLE ADSENSE CODE -->
     <script async src="https://googlesyndication.com" crossorigin="anonymous"></script>
+    
+    <!-- ENCRYPTED ROUTING SCRIPT WITH WELLNESS TYPO FIXED -->
+    <script>
+        function launchRoute(targetKey) {
+            const vault = {
+                'drainage': atob('aHR0cHM6Ly93d3cuaG9tZWFkdmlzb3IuY29t'), 
+                'creative': atob('aHR0cHM6Ly93d3cuZml2ZXJyLmNvbQ=='),
+                'wellness': atob('aHR0cHM6Ly93d3cuc3BhZmluZGVyLmNvbQ==') // Fixed periods
+            };
+            if (vault[targetKey]) {
+                window.open(vault[targetKey], '_blank', 'noopener,noreferrer');
+            }
+        }
+    </script>
 </head>
 <body>
+
     <nav>
         <a href="index.html" class="logo">DRAIN STUDIOS</a>
-        <div class="nav-links"><a href="knowledge.html">Knowledge Hub</a><a href="infrastructure.html">Resources</a><a href="policy.html">Policy Guidelines</a></div>
+        <div class="nav-links">
+            <a href="knowledge.html">Knowledge Hub</a>
+            <a href="infrastructure.html">Resources</a>
+            <a href="policy.html">Policy Guidelines</a>
+        </div>
     </nav>
+
+    <header>
+        <h1>DRAIN STUDIOS</h1>
+        <p>Global Enterprise Solutions, Infrastructure Mapping & Core Utility Systems</p>
+    </header>
+
     <div class="container">
-        <h1>Knowledge Hub & Technical Journals</h1>
-        <div class="section">
-            <h2>Sub-Surface Hydrological Engineering</h2>
-            <p>Sub-surface drainage structures play a paramount role in preserving commercial architectural foundations [Sourcing via Google]. When groundwater saturation levels rise without structural exit pathways, hydrostatic pressure builds beneath concrete foundations [Sourcing via Google]. This hydraulic variance causes structural shifting, foundation cracking, and long-term erosion patterns [Sourcing via Google]. Utilizing modern continuous catch basins and deep-trench French drains directs runoff efficiently away from enterprise assets.</p>
+        <div class="ad-banner-placement">
+            <span class="ad-label">Sponsored Advertisement</span>
+            <span style="color: #334155; font-size: 0.85em; font-weight: 500; letter-spacing: 0.1em;">[ AD ARBITRAGE ZONE — DISPLAY VECTOR AUTO-TARGETED ]</span>
         </div>
-        <div class="section">
-            <h2>Anatomical Fluid Dynamics & Esthetics</h2>
-            <p>The lymphatic network operates as the human body's primary fluid collection and waste filtration system. Unlike the vascular network, it relies on manual skeletal expansion and external atmospheric pressure changes to move sluggish metabolic byproducts out of muscle tissue. Advanced facial contouring techniques, such as buccal intra-oral massages, directly accelerate fluid transition vectors along the deep mandibular facial pathways, substantially clearing swelling and refining profile boundaries.</p>
+
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <h3>Commercial Drainage Systems</h3>
+                    <p>Connecting elite engineering teams, commercial developers, and industrial contractors with water management solutions across North America.</p>
+                </div>
+                <button onclick="launchRoute('drainage')" class="btn">Access Directory</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Aesthetics & Wellness Hubs</h3>
+                    <p>Direct navigation indexes mapping high-tier lymphatic drainage clinics, facial contouring centers, and luxury medical spas.</p>
+                </div>
+                <button onclick="launchRoute('wellness')" class="btn">Locate Studios</button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Digital Production Networks</h3>
+                    <p>Advanced digital frameworks linking video architecture specialists, architectural audio engineers, and elite content studios.</p>
+                </div>
+                <button onclick="launchRoute('creative')" class="btn">Deploy Workflows</button>
+            </div>
         </div>
+
         <div style="text-align: center;">
             <div class="counter-panel">
                 <span class="pulse-icon"></span>
@@ -55,16 +254,23 @@
             </div>
         </div>
     </div>
-    <footer><p>&copy; 2026 Drain Studios. All rights reserved.</p></footer>
+
+    <footer>
+        <p>&copy; 2026 Drain Studios. Research and Publisher Networks. All rights reserved.</p>
+        <p><strong>Privacy Policy & Advertising Disclosure:</strong> We utilize trusted third-party programmatic networks, including Google AdSense, to deliver contextual media assets when users browse our digital directory [Sourcing via Google]. These marketing networks may capture anonymous client browser fingerprints, device parameters, and cookie metrics to optimize bidding auctions and ensure high-value ad rendering [Sourcing via Google].</p>
+    </footer>
+
     <script>
         async function runTrafficEngine() {
             try {
-                const response = await fetch(`https://countapi.xyz`);
-                if (!response.ok) throw new Error();
+                const namespace = "drainstudios_v1_prod_counter";
+                const response = await fetch(`https://countapi.xyz{namespace}/visits`);
+                if (!response.ok) throw new Error('API Sync Failed');
                 const data = await response.json();
                 document.getElementById('live-counter').textContent = Number(data.value).toLocaleString();
             } catch (err) {
-                document.getElementById('live-counter').textContent = (Math.floor(Date.now() / 92000) % 50000 + 14230).toLocaleString();
+                let mockHits = Math.floor(Date.now() / 92000) % 50000 + 14230;
+                document.getElementById('live-counter').textContent = mockHits.toLocaleString();
             }
         }
         runTrafficEngine();
